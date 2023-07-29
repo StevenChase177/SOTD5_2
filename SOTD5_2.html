@@ -5,17 +5,61 @@
     </title>
     <body>
         <form id="calculatorForm">
-            <input class="firstNum" type="number">
-            <input class="secondNum" type="number">
+            <input id="firstNum" type="number">
+            <input id="secondNum" type="number">
             <br>
-            <input type="button" value="additon">
-            <input type="button" value="substraction">
+            <input type="button" value="additon" onclick="formChecker(event)">
+            <input type="button" value="substraction" onclick="formChecker(event)">
             <br>
-            <input type="button" value="divison">
-            <input type="button" value="multiplication">
+            <input type="button" value="divison" onclick="formChecker(event)">
+            <input type="button" value="multiplication" onclick="formChecker(event)">
         </form>
-        <script>
-
+        <p id="answer"></p>
+        <script> 
+            // checks to see if both vaules in the form are filled.
+            // converts input vaules to number
+            // if all values are filled calls apporiate math functions 
+            function formChecker(event){
+                let firstValue = Number(document.getElementById("firstNum").value)
+                let secondValue =Number(document.getElementById("secondNum").value)
+                if( firstValue !== '' && secondValue !== ''){
+                    if(event.srcElement.value == "additon"){
+                        getSum(firstValue, secondValue)
+                    }
+                    if(event.srcElement.value == "substraction"){
+                        getDiff(firstValue, secondValue)
+                    }
+                    if(event.srcElement.value == "divison"){
+                        getDivison(firstValue, secondValue)
+                    }
+                    if(event.srcElement.value == "multiplication"){
+                        getMult(firstValue, secondValue)
+                    }                   
+                }else {
+                    debugger
+                    alert("please enter two numbers in the the basic calculator")
+                }
+                // adds two numbers together
+                function getSum(int1, int2){
+                    let answer = int1 + int2 
+                    showWork(answer)
+                }
+                function getDiff(int1, int2){
+                    let answer = int1 - int2 
+                    showWork(answer)
+                }
+                function getMult(int1, int2){
+                    let answer = int1 * int2
+                    showWork(answer)
+                }
+                function getDivison(int1, int2){
+                    let answer = int1/int2
+                    showWork(answer)
+                }
+                function showWork(answer){
+                    document.getElementById("answer").innerHTML = answer
+                }
+            }
         </script>
     </body>
 </html>
